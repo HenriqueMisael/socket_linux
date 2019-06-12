@@ -1,3 +1,3 @@
-/home/henrique/Desenvolvimento/personal/socket_server/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/henrique/Desenvolvimento/personal/socket_server/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/henrique/Desenvolvimento/personal/socket_server/cmake-build-debug/CMakeFiles/socket_server.dir
+/home/henrique/Desenvolvimento/personal/socket_linux/server/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/henrique/Desenvolvimento/personal/socket_linux/server/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/henrique/Desenvolvimento/personal/socket_linux/server/cmake-build-debug/CMakeFiles/socket_server.dir

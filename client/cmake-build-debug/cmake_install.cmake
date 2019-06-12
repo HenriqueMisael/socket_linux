@@ -1,4 +1,4 @@
-# Install script for directory: /home/henrique/Desenvolvimento/personal/socket_client
+# Install script for directory: /home/henrique/Desenvolvimento/personal/socket_linux/client
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/henrique/Desenvolvimento/personal/socket_client/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/henrique/Desenvolvimento/personal/socket_linux/client/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

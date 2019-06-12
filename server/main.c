@@ -4,8 +4,11 @@
 #include <unistd.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <stdbool.h>
 
 int server_handler;
+
+bool playing;
 
 struct sockaddr_in get_server_address(int port);
 
@@ -21,6 +24,10 @@ struct sockaddr_in get_server_address(int port) {
 }
 
 void accept_connections();
+
+void communicate(int client_handler);
+
+const char *read_from_connection(int client_handler);
 
 void error(const char *msg) {
     perror(msg);
@@ -44,28 +51,50 @@ int main(int arg_count, char *args[]) {
 
 void accept_connections() {
 
-    struct sockaddr_in client_address;
+    do {
+        struct sockaddr_in client_address;
 
-    socklen_t clilen = sizeof(client_address);
+        socklen_t clilen = sizeof(client_address);
 
-    int client_handler = accept(server_handler, (struct sockaddr *) &client_address, &clilen);
-    if (client_handler < 0) {
-        error("ERROR on accept");
-    }
+        int client_handler = accept(server_handler, (struct sockaddr *) &client_address, &clilen);
+        if (client_handler < 0) {
+            error("ERROR on accept");
+        }
 
-    char buffer[256];
+        if (!fork()) {
+            communicate(client_handler);
+        }
+    } while (playing);
+}
 
+void communicate(int client_handler) {
+
+    const char *client_name = read_from_connection(client_handler);
+
+    do {
+        const char *client_message = read_from_connection(client_handler);
+
+        if (strlen(client_message) == 1) {
+            break;
+        }
+
+        printf("[%s]: %s\n", client_name, client_message);
+
+        if (write(client_handler, "I got your message", 18) < 0) {
+            error("ERROR writing to socket");
+        }
+    } while (true);
+
+    close(client_handler);
+}
+
+const char *read_from_connection(int client_handler) {
+    char *buffer = malloc(256);
     bzero(buffer, 256);
     if (read(client_handler, buffer, 255) < 0) {
         error("ERROR reading from socket");
     }
-
-    printf("Here is the message: %s\n", buffer);
-    if (write(client_handler, "I got your message", 18) < 0) {
-        error("ERROR writing to socket");
-    }
-
-    close(client_handler);
+    return buffer;
 }
 
 void create_socket_server(int port) {
@@ -83,4 +112,5 @@ void create_socket_server(int port) {
     }
 
     listen(server_handler, 5);
+    playing = true;
 }

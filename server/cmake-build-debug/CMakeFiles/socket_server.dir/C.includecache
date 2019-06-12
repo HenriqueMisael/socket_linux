@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/henrique/Desenvolvimento/personal/socket_server/main.c
+/home/henrique/Desenvolvimento/personal/socket_linux/server/main.c
 stdio.h
 -
 stdlib.h
@@ -18,5 +18,7 @@ unistd.h
 sys/socket.h
 -
 netinet/in.h
+-
+stdbool.h
 -
 

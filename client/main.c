@@ -5,8 +5,11 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
+#include <stdbool.h>
 
 int socket_handler;
+
+char name[256];
 
 void open_socket();
 
@@ -29,10 +32,24 @@ int main(int arg_count, char *args[]) {
         exit(0);
     }
 
+    if (arg_count == 4) {
+        strcpy(name, args[3]);
+    } else {
+        sprintf(name, "anonymous");
+    }
 
     connect_server(args);
-    send_message(get_command());
-    get_response();
+    send_message(name);
+    do {
+        char *message = get_command();
+
+        if (strlen(message) == 1) {
+            break;
+        }
+
+        send_message(message);
+        get_response();
+    } while (true);
 
     close(socket_handler);
 
@@ -75,7 +92,7 @@ void connect_server(char *const *args) {
     struct sockaddr_in serv_addr;
     bzero((char *) &serv_addr, sizeof(serv_addr));
     serv_addr.sin_family = AF_INET;
-    bcopy((char *) server->h_addr,
+    bcopy(server->h_addr,
           (char *) &serv_addr.sin_addr.s_addr,
           server->h_length);
     serv_addr.sin_port = htons(atoi(args[2]));
