@@ -74,11 +74,11 @@ void communicate(int client_handler) {
     do {
         const char *client_message = read_from_connection(client_handler);
 
-        if (strlen(client_message) == 1) {
+        if (strlen(client_message) == 0) {
             break;
         }
 
-        printf("[%s]: %s\n", client_name, client_message);
+        printf("[%s]: %s", client_name, client_message);
 
         if (write(client_handler, "I got your message", 18) < 0) {
             error("ERROR writing to socket");

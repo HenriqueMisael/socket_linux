@@ -28,7 +28,7 @@ void error(const char *msg) {
 
 int main(int arg_count, char *args[]) {
     if (arg_count < 3) {
-        fprintf(stderr, "usage %s hostname port\n", args[0]);
+        fprintf(stderr, "usage \"%s hostname port name\" where name is optional\n", args[0]);
         exit(0);
     }
 
@@ -89,14 +89,14 @@ void connect_server(char *const *args) {
         fprintf(stderr, "ERROR, no such host\n");
         exit(0);
     }
-    struct sockaddr_in serv_addr;
-    bzero((char *) &serv_addr, sizeof(serv_addr));
-    serv_addr.sin_family = AF_INET;
+    struct sockaddr_in server_address;
+    bzero((char *) &server_address, sizeof(server_address));
+    server_address.sin_family = AF_INET;
     bcopy(server->h_addr,
-          (char *) &serv_addr.sin_addr.s_addr,
-          server->h_length);
-    serv_addr.sin_port = htons(atoi(args[2]));
-    if (connect(socket_handler, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
+          (char *) &server_address.sin_addr.s_addr,
+          (size_t) server->h_length);
+    server_address.sin_port = htons((uint16_t) atoi(args[2]));
+    if (connect(socket_handler, (struct sockaddr *) &server_address, sizeof(server_address)) < 0) {
         error("ERROR connecting");
     }
 }
