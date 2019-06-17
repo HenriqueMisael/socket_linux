@@ -1,0 +1,70 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/henrique/Desenvolvimento/personal/socket_linux/server/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_74f9d/fast"
+/usr/bin/make -f CMakeFiles/cmTC_74f9d.dir/build.make CMakeFiles/cmTC_74f9d.dir/build
+make[1]: Entering directory '/home/henrique/Desenvolvimento/personal/socket_linux/server/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_74f9d.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -std=gnu11 -o CMakeFiles/cmTC_74f9d.dir/CheckSymbolExists.c.o   -c /home/henrique/Desenvolvimento/personal/socket_linux/server/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_74f9d
+/opt/clion-2018.1.5/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_74f9d.dir/link.txt --verbose=1
+/usr/bin/cc      CMakeFiles/cmTC_74f9d.dir/CheckSymbolExists.c.o  -o cmTC_74f9d 
+CMakeFiles/cmTC_74f9d.dir/CheckSymbolExists.c.o: na função `main':
+CheckSymbolExists.c:(.text+0x16): referência indefinida para `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_74f9d.dir/build.make:97: recipe for target 'cmTC_74f9d' failed
+make[1]: *** [cmTC_74f9d] Error 1
+make[1]: Leaving directory '/home/henrique/Desenvolvimento/personal/socket_linux/server/cmake-build-debug/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_74f9d/fast' failed
+make: *** [cmTC_74f9d/fast] Error 2
+
+File /home/henrique/Desenvolvimento/personal/socket_linux/server/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/henrique/Desenvolvimento/personal/socket_linux/server/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_cbf77/fast"
+/usr/bin/make -f CMakeFiles/cmTC_cbf77.dir/build.make CMakeFiles/cmTC_cbf77.dir/build
+make[1]: Entering directory '/home/henrique/Desenvolvimento/personal/socket_linux/server/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_cbf77.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -std=gnu11 -o CMakeFiles/cmTC_cbf77.dir/CheckSymbolExists.c.o   -c /home/henrique/Desenvolvimento/personal/socket_linux/server/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_cbf77
+/opt/clion-2018.1.5/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cbf77.dir/link.txt --verbose=1
+/usr/bin/cc      CMakeFiles/cmTC_cbf77.dir/CheckSymbolExists.c.o  -o cmTC_cbf77 
+CMakeFiles/cmTC_cbf77.dir/CheckSymbolExists.c.o: na função `main':
+CheckSymbolExists.c:(.text+0x16): referência indefinida para `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_cbf77.dir/build.make:97: recipe for target 'cmTC_cbf77' failed
+make[1]: *** [cmTC_cbf77] Error 1
+make[1]: Leaving directory '/home/henrique/Desenvolvimento/personal/socket_linux/server/cmake-build-debug/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_cbf77/fast' failed
+make: *** [cmTC_cbf77/fast] Error 2
+
+File /home/henrique/Desenvolvimento/personal/socket_linux/server/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+

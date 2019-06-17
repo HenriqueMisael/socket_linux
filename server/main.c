@@ -5,6 +5,12 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <stdbool.h>
+#include <semaphore.h>
+#include <fcntl.h>
+
+#define SEM_NAME "/semaphore_writing/0"
+#define SEM_PERMS (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP)
+#define INITIAL_VALUE 1
 
 int server_handler;
 
@@ -51,6 +57,13 @@ int main(int arg_count, char *args[]) {
 
 void accept_connections() {
 
+    sem_t *semaphore = sem_open(SEM_NAME, O_CREAT | O_EXCL, SEM_PERMS, INITIAL_VALUE);
+
+    if (semaphore == SEM_FAILED) {
+        perror("sem_open(3) error");
+        exit(EXIT_FAILURE);
+    }
+
     do {
         struct sockaddr_in client_address;
 
@@ -65,13 +78,21 @@ void accept_connections() {
             communicate(client_handler);
         }
     } while (playing);
+
+    sem_unlink(SEM_NAME);
 }
 
 void communicate(int client_handler) {
 
+    sem_t *semaphore = sem_open(SEM_NAME, O_RDWR);
+    if (semaphore == SEM_FAILED) {
+        perror("sem_open(3) failed");
+        exit(EXIT_FAILURE);
+    }
     const char *client_name = read_from_connection(client_handler);
 
     do {
+        sem_wait(semaphore);
         const char *client_message = read_from_connection(client_handler);
 
         if (strlen(client_message) == 0) {
@@ -81,8 +102,11 @@ void communicate(int client_handler) {
         printf("[%s]: %s", client_name, client_message);
 
         if (write(client_handler, "I got your message", 18) < 0) {
+            sem_post(semaphore);
             error("ERROR writing to socket");
         }
+
+        sem_post(semaphore);
     } while (true);
 
     close(client_handler);

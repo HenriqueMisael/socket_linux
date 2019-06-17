@@ -21,4 +21,8 @@ netinet/in.h
 -
 stdbool.h
 -
+semaphore.h
+-
+fcntl.h
+-
 

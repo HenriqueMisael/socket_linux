@@ -192,3 +192,17 @@ make[1]: Leaving directory '/home/henrique/Desenvolvimento/personal/socket_linux
     Feature record: C_FEATURE:0c_restrict
     Feature record: C_FEATURE:0c_static_assert
     Feature record: C_FEATURE:0c_variadic_macros
+Determining if the include file pthread.h exists passed with the following output:
+Change Dir: /home/henrique/Desenvolvimento/personal/socket_linux/server/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_b54ae/fast"
+/usr/bin/make -f CMakeFiles/cmTC_b54ae.dir/build.make CMakeFiles/cmTC_b54ae.dir/build
+make[1]: Entering directory '/home/henrique/Desenvolvimento/personal/socket_linux/server/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_b54ae.dir/CheckIncludeFile.c.o
+/usr/bin/cc   -std=gnu11 -o CMakeFiles/cmTC_b54ae.dir/CheckIncludeFile.c.o   -c /home/henrique/Desenvolvimento/personal/socket_linux/server/cmake-build-debug/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_b54ae
+/opt/clion-2018.1.5/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b54ae.dir/link.txt --verbose=1
+/usr/bin/cc      CMakeFiles/cmTC_b54ae.dir/CheckIncludeFile.c.o  -o cmTC_b54ae 
+make[1]: Leaving directory '/home/henrique/Desenvolvimento/personal/socket_linux/server/cmake-build-debug/CMakeFiles/CMakeTmp'
+
+
